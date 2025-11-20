@@ -11,7 +11,7 @@ function BookCard(props) {
 
 
     return (
-        <Link to={`/bookprofile?=${props.name}`}>
+        <Link to={`/p201/bookprofile?=${props.name}`}>
             <Card style={{ width: '18rem', margin: '20px' }}>
                 <Card.Body>
                     <Card.Img variant="top" src={reactlogo} />

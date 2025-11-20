@@ -38,13 +38,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AppLayout />}>
+        <Route path="/p201" element={<AppLayout />}>
          <Route index element={<SplashScreen></SplashScreen>}></Route>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/library" element={<Library />}></Route>
-          <Route path="/bookshelf" element={<BookShelf />}></Route>
-          <Route path="/bookprofile" element={<BookProfile />}></Route>
-          <Route path="/userprofile" element={<UserProfile />}></Route>
+          <Route path="/p201/home" element={<Home />}></Route>
+          <Route path="/p201/library" element={<Library />}></Route>
+          <Route path="/p201/bookshelf" element={<BookShelf />}></Route>
+          <Route path="/p201/bookprofile" element={<BookProfile />}></Route>
+          <Route path="/p201/userprofile" element={<UserProfile />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
