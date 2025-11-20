@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import '../App.css'
 import { BrowserRouter, Routes, Route } from 'react-router'
 
-import Home from 'src/content/Home.jsx'
+import Home from '../content/Home'
 import AppLayout from './AppLayout'
 import Library from '../content/Library.Jsx'
 import UserProfile from '../content/UserProfile'
+import BookShelf from '../content/BookShelf'
+import BookProfile from '../content/BookProfile'
+import SplashScreen from '../content/SplashScreen'
 // <>
 //     <div>
 //       <a href="https://vite.dev" target="_blank">
@@ -33,13 +34,16 @@ import UserProfile from '../content/UserProfile'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  console.log("rendered")
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          <Route index element={<Home />}></Route>
+         <Route index element={<SplashScreen></SplashScreen>}></Route>
+          <Route path="/home" element={<Home />}></Route>
           <Route path="/library" element={<Library />}></Route>
+          <Route path="/bookshelf" element={<BookShelf />}></Route>
+          <Route path="/bookprofile" element={<BookProfile />}></Route>
           <Route path="/userprofile" element={<UserProfile />}></Route>
         </Route>
       </Routes>

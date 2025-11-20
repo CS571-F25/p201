@@ -1,23 +1,22 @@
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
+import { Link, Outlet } from "react-router";
 function AppLayout(props) {
-    const [loginStatus, setLoginStatus] = useState(undefined)
-    console.log(sessionStorage.getItem('loggedIn?'))
-    console.log(loginStatus)
+
     return (
         <div>
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/">Home</Nav.Link>
+                        <Nav.Link as={Link} to="/">SplashScreen</Nav.Link>
+                        <Nav.Link as={Link} to="/home">Home</Nav.Link>
+                        <Nav.Link as={Link} to="/library">Library</Nav.Link>
+                        <Nav.Link as={Link} to="/bookshelf">Bookshelf</Nav.Link>
+                        <Nav.Link as={Link} to="/userprofile">Profile</Nav.Link>
+
                     </Nav>
                 </Container>
             </Navbar>
-            <div style={{ margin: "1rem" }}>
-                <BadgerLoginStatusContext.Provider value={[loginStatus, setLoginStatus]}>
-                    <Outlet />
-                </BadgerLoginStatusContext.Provider>
-            </div>
+            <Outlet />
         </div>
     );
 }

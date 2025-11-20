@@ -1,7 +1,10 @@
 function Home(props){
-    return (<div>
-        <p>What if there was text here, that would be cool I think</p>
-    </div>)
+    console.log("home rendered")
+    return <p>
+        the user should feel cozy here
+        <br/>
+        if only we had their preferences and favorite books and review responses to show here...
+    </p>
 }
 
 export default Home;
