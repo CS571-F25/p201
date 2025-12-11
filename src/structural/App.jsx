@@ -10,6 +10,8 @@ import BookShelf from '../content/BookShelf'
 import BookProfile from '../content/BookProfile'
 import SplashScreen from '../content/SplashScreen'
 import BookPage from '../content/BookPage.jsx'
+import Signup from '../content/auth/Signup.jsx'
+import Logout from '../content/auth/Logout.jsx'
 // <>
 //     <div>
 //       <a href="https://vite.dev" target="_blank">
@@ -42,13 +44,16 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/p201" element={<AppLayout />}>
-         <Route index element={<SplashScreen></SplashScreen>}></Route>
+          <Route index element={<SplashScreen></SplashScreen>}></Route>
           <Route path="/p201/home" element={<Home />}></Route>
           <Route path="/p201/catalog" element={<Catalog />}></Route>
           <Route path="/p201/bookshelf" element={<BookShelf />}></Route>
           <Route path="/p201/bookprofile" element={<BookProfile />}></Route>
           <Route path="/p201/userprofile" element={<UserProfile />}></Route>
-           <Route path="/p201/bookpage" element={<BookPage />}></Route>
+          <Route path="/p201/bookpage" element={<BookPage />}></Route>
+          <Route path="/p201/signup" element={<Signup></Signup>}></Route>
+          <Route path="/p201/logout" element={<Logout></Logout>}></Route>
+
         </Route>
       </Routes>
     </BrowserRouter>

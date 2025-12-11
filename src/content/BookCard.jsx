@@ -3,28 +3,31 @@ import reactlogo from "../assets/react.svg"
 import { Link } from "react-router";
 import { useContext } from "react";
 import { Button } from "react-bootstrap";
-import FavoriteBooksContext from "../contexts/FavoriteBooksContext";
+import DataContextProvider from "../contexts/DataContextProvider";
 function BookCard(props) {
-    const [bookLanes, setBookLanes] = useContext(FavoriteBooksContext)
+    const [bookLanes, setBookLanes] = useContext(DataContextProvider)
 
     function favoriteBook() {
-        alert("This book has been favorited")
         setBookLanes(oldLanes => {
             let favoriteLane = oldLanes["favorites"]
             const newLanes = { ...oldLanes }
             newLanes["favorites"] = [...favoriteLane, props.title]
             return newLanes
         })
+
     }
 
     function unfavoriteBook() {
-        alert("This book has been favorited")
         setBookLanes(oldLanes => {
             let favoriteLane = oldLanes["favorites"]
             oldLanes["favorites"] = favoriteLane.filter(r => r != props.title)
             const newLanes = { ...oldLanes }
             return newLanes
         })
+    }
+
+    function storeFavoritesOnUser(){
+        
     }
     //TO-DO 
     //      
@@ -49,7 +52,7 @@ function BookCard(props) {
 
                 </Card.Body>
             </Link>
-            {bookLanes.favorites.some(r => r === props.name) ? <Button onClick={unfavoriteBook}>Unfavorite</Button> : <Button onClick={favoriteBook}>Favorite</Button>}
+            {bookLanes.isLoggedIn ? bookLanes.favorites.some(r => r === props.name) ? <Button onClick={unfavoriteBook} variant="danger">Remove from Bookshelf</Button> : <Button onClick={favoriteBook}>Add to Bookshelf</Button> : <></>}
         </Card>
 
     )

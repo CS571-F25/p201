@@ -1,10 +1,13 @@
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 import { Link, Outlet } from "react-router";
 import { useState } from "react";
-import FavoriteBooksContext from "../contexts/FavoriteBooksContext";
+import DataContextProvider from "../contexts/DataContextProvider";
 function AppLayout(props) {
-    const [bookLanes, setBookLanes] = useState({
-        favorites: []
+    const [websiteData, setWebsiteData] = useState({
+        favorites: [],
+        isLoggedIn: false,
+        curUser : "guest",
+        reputation : null
     })
 
     return (
@@ -17,13 +20,14 @@ function AppLayout(props) {
                         <Nav.Link as={Link} to="/p201/catalog">Catalog</Nav.Link>
                         <Nav.Link as={Link} to="/p201/bookshelf">Bookshelf</Nav.Link>
                         <Nav.Link as={Link} to="/p201/userprofile">Profile</Nav.Link>
-
+                        {websiteData.isLoggedIn ? <Nav.Link as={Link} to="/p201/logout">Logout</Nav.Link> : <Nav.Link as={Link} to="/p201/signup">Signup & Login</Nav.Link>}
                     </Nav>
                 </Container>
+                <h1 style={{color: "white", fontSize: 24}}>{websiteData.isLoggedIn ? `${websiteData.curUser}` : "Currently in guest mode"}</h1>
             </Navbar>
-            <FavoriteBooksContext.Provider value ={[bookLanes, setBookLanes]}>
+            <DataContextProvider.Provider value={[websiteData, setWebsiteData]}>
                 <Outlet />
-            </FavoriteBooksContext.Provider>
+            </DataContextProvider.Provider>
         </div>
     );
 }

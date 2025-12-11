@@ -1,9 +1,9 @@
 import BookCard from "./BookCard";
 import { Row } from "react-bootstrap";
 import { useContext, useEffect, useState } from "react";
-import FavoriteBooksContext from "../contexts/FavoriteBooksContext";
+import DataContextProvider from "../contexts/DataContextProvider";
 function Catalog(props) {
-    const [bookLanes, setBookLanes] = useContext(FavoriteBooksContext)
+    const [bookLanes, setBookLanes] = useContext(DataContextProvider)
     const [books, setBooks] = useState([])
     // add filtering by tag
     // we'll need api, get some project gutenberg books in here

@@ -86,13 +86,13 @@ function BookProfile(props) {
         }).then(res => res.json()).then(res => Object.values(res.results)).then(res => res.filter(r => r.reviewedBook === page)).then(res => res.reverse()) // the title of the reviewed book is reviewedBook, not title, which is the title of the review in this context
         console.log(bookReviews)
         setReviews(bookReviews)
-        handleAggregateScore()
+        handleAggregateScore(bookReviews)
     }
 
-    function handleAggregateScore(){
-        const numOfReviews = reviews.length
+    function handleAggregateScore(bookReviews){
+        const numOfReviews = bookReviews.length
         let sumScore = 0
-        reviews.forEach(r => sumScore += r.rating)
+        bookReviews.forEach(r => sumScore += r.rating)
         SetAggregateScore((sumScore/numOfReviews).toFixed(2))
     }
     return (
