@@ -4,10 +4,11 @@ function BookReview(props) {
 
     return <div>
         <Card>
-            <h1>This book SUCKS</h1>
-            <h2>by random User</h2>
+            <h1>{props.title}</h1>
+            <h2>{`Rating: ${props.rating}`}</h2>
+            <h4>{`By ${props.user} on ${new Date(props.publishDate).toLocaleString()}`}</h4>
             <p>
-                not even useful as tinder!
+                {props.content}
             </p>
             <Button onClick={() => alert("someone should make a like function for this....")}>Like</Button>
             <Button onClick={() => alert("someone should make a DISLIKE function for this....")}>Dislike</Button>

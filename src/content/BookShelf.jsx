@@ -1,11 +1,14 @@
 import BookCard from "./BookCard"
-
-function BookShelf(props){
+import FavoriteBooksContext from "../contexts/FavoriteBooksContext"
+import { use, useContext } from "react"
+import { Button } from "react-bootstrap"
+import { Row } from "react-bootstrap"
+function BookShelf(props) {
+    const [bookLanes, setBookLanes] = useContext(FavoriteBooksContext)
     return <div>
-        <p>
-        this is where you would keep books if you had any
-    </p>
-    <BookCard title={"Bookshelf Card"} name ={"bookshelfcard"}></BookCard>
+        <Row>
+            {bookLanes.favorites.length != 0 ? bookLanes.favorites.map(r => <BookCard key={crypto.randomUUID} title={r} name={r}></BookCard>) : <p>you should really get some books here</p>}
+        </Row>
     </div>
 }
 

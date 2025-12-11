@@ -4,11 +4,12 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 
 import Home from '../content/Home'
 import AppLayout from './AppLayout'
-import Library from '../content/Library.Jsx'
+import Catalog from '../content/Catalog.jsx'
 import UserProfile from '../content/UserProfile'
 import BookShelf from '../content/BookShelf'
 import BookProfile from '../content/BookProfile'
 import SplashScreen from '../content/SplashScreen'
+import BookPage from '../content/BookPage.jsx'
 // <>
 //     <div>
 //       <a href="https://vite.dev" target="_blank">
@@ -32,6 +33,8 @@ import SplashScreen from '../content/SplashScreen'
 //     </p>
 //   </>
 
+
+
 function App() {
   const [count, setCount] = useState(0)
   console.log("rendered")
@@ -41,10 +44,11 @@ function App() {
         <Route path="/p201" element={<AppLayout />}>
          <Route index element={<SplashScreen></SplashScreen>}></Route>
           <Route path="/p201/home" element={<Home />}></Route>
-          <Route path="/p201/library" element={<Library />}></Route>
+          <Route path="/p201/catalog" element={<Catalog />}></Route>
           <Route path="/p201/bookshelf" element={<BookShelf />}></Route>
           <Route path="/p201/bookprofile" element={<BookProfile />}></Route>
           <Route path="/p201/userprofile" element={<UserProfile />}></Route>
+           <Route path="/p201/bookpage" element={<BookPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
