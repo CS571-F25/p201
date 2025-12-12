@@ -5,7 +5,7 @@ import StarRating from "./flair/StarRating"
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router"
 import { Form } from "react-bootstrap"
-import { Card } from "react-bootstrap"
+import { Card, Container } from "react-bootstrap"
 import { useContext } from "react"
 
 import CurrentRatingContext from "../contexts/CurrentRatingContext"
@@ -25,6 +25,7 @@ function BookProfile(props) {
     
     const titleRef = useRef()
     const contentRef = useRef()
+    const [feedbackMessage, setFeedbackMessage] = useState('')
 
 
 
@@ -46,14 +47,17 @@ function BookProfile(props) {
         setCurrentBook(apiBooks)
     }
 
-    function handleReviewSumbit() {
+    async function handleReviewSumbit(e) {
+        e && e.preventDefault()
+        setFeedbackMessage('')
         if (titleRef.current.value == '' || contentRef.current.value == '') {
-            alert("You must provide both a title and a content")
+            setFeedbackMessage('You must provide both a title and content for your review.')
+            return
         }
-        else {
 
+        try {
             const date = new Date();
-            fetch("https://cs571api.cs.wisc.edu/rest/f25/bucket/reviews", {
+            await fetch("https://cs571api.cs.wisc.edu/rest/f25/bucket/reviews", {
                 method: "POST",
                 headers: {
                     "X-CS571-ID": CS571.getBadgerId(),
@@ -74,8 +78,11 @@ function BookProfile(props) {
             titleRef.current.value = ''
             contentRef.current.value = ''
             setUserRating(0)
-            alert("your review has been successfully submitted")
+            setFeedbackMessage('Your review has been successfully submitted.')
             fetchCurrentBookReviews()
+        } catch (err) {
+            setFeedbackMessage('There was an error submitting your review. Please try again.')
+            console.error(err)
         }
     }
 
@@ -102,36 +109,39 @@ function BookProfile(props) {
             <h1>{props.name}</h1>
             <Row>
                 <Col xs={3}>
-                    <BookCard title={page} name={page} >
-                    </BookCard>
-                    <h2>Aggregate Score: {aggregateScore}</h2>
-                    <h3>Based on {reviews.length} reviews</h3>
-                    <Link to={`/p201/bookpage?bookname=${page}`}>
-                        <Button>READ</Button>
-                    </Link>
+                    <Container  className="align-items-center justify-content-center h-100vh">
+                        <BookCard title={page} name={page} >
+                        </BookCard>
+                        <h2>Aggregate Score: {aggregateScore}</h2>
+                        <h3>Based on {reviews.length} reviews</h3>
+                        <Link to={`/p201/bookpage?bookname=${page}`}>
+                            <Button>READ</Button>
+                        </Link>
+                    </Container>
                 </Col>
                 <Col xs={9}>
-                {websiteData.isLoggedIn ? 
+                {websiteData.isLoggedIn ? (
                     <Card>
                         <h1>Write your review here!</h1>
                         <CurrentRatingContext.Provider value={[userRating, setUserRating]}>
                             <StarRating count={5}></StarRating>
                         </CurrentRatingContext.Provider>
-                        <Form>
-                            <Form.Label htmlFor="titleInput"></Form.Label>
+                        <Form onSubmit={handleReviewSumbit} aria-labelledby="review-form-label">
+                            <span id="review-form-label" className="visually-hidden">Review form</span>
+                            <Form.Label htmlFor="titleInput">Review title</Form.Label>
                             <Form.Control id="titleInput" placeholder={"Review Title"} ref={titleRef}></Form.Control>
-                            <Form.Label htmlFor="commentInput"></Form.Label>
+                            <Form.Label htmlFor="commentInput">Review content</Form.Label>
                             <Form.Control id="commentInput" ref={contentRef}></Form.Control>
+                            <Button type="submit" aria-label="Submit review">Submit</Button>
                         </Form>
-                        <Button onClick={handleReviewSumbit}>Submit</Button>
+                        <div role="status" aria-live="polite" style={{marginTop: '0.5rem'}}>{feedbackMessage}</div>
                     </Card>
-                     : <h1>Sign-up today to leave your own review!</h1>}
+                ) : (
+                    <h1>Sign-up today to leave your own review!</h1>
+                )}
                     {reviews.length != 0 ? reviews.map(r => <BookReview key={crypto.randomUUID()}{...r}></BookReview>) : <h2>Hm... no reviews here, maybe you could be the first!</h2>}
                 </Col>
             </Row>
-            <p>
-                it would be funny if there were some books here i think
-            </p>
         </div>
     )
 }

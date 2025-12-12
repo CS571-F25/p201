@@ -108,9 +108,9 @@ function Signup() {
             <Col>
                 <Form>
                     <h1>Login for some more fun!</h1>
-                    <Form.Label htmlFor="loginUserInput" />
+                    <Form.Label htmlFor="loginUserInput">Username</Form.Label>
                     <Form.Control id="loginUserInput" placeholder={"Write your Username Here!"} value={loginUserInput} onChange={(e) => setLoginUserInput(e.target.value)} />
-                    <Form.Label htmlFor="loginPinInput" />
+                    <Form.Label htmlFor="loginPinInput">Password</Form.Label>
                     <Form.Control id="loginPinInput" type="password" placeholder={"Login here!"} value={loginPasswordInput} onChange={(e) => setLoginPassWordInput(e.target.value)} />
                 </Form>
                 <Button onClick={handleLoginSubmit}>Login!</Button>
@@ -118,9 +118,9 @@ function Signup() {
             <Col>
                 <Form>
                     <h1>Create your account today!</h1>
-                    <Form.Label htmlFor="userInput" />
+                    <Form.Label htmlFor="userInput">Username</Form.Label>
                     <Form.Control id="userInput" placeholder={"Write your Username Here!"} value={usernameInput} onChange={(e) => setUsernameInput(e.target.value)} />
-                    <Form.Label htmlFor="pinInput" />
+                    <Form.Label htmlFor="pinInput">Password</Form.Label>
                     <Form.Control id="pinInput" type="password" value={passwordInput} placeholder={"Write your Password Here!"} onChange={(e) => setPasswordInput(e.target.value)} />
                 </Form>
                 <Button onClick={handleSignupSumbit}>Signup!</Button>

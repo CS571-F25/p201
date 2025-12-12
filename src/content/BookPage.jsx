@@ -20,7 +20,7 @@ function BookPage() {
         <h1>
             {page}
         </h1>
-        <p>
+        <p style={{textAlign: "justify", marginLeft: 250, marginRight: 250}}>
         {currentBook.text}
         </p>
     </div>

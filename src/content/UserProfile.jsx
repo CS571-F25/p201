@@ -1,18 +1,23 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Card, Row, Col } from "react-bootstrap"
 import 'bootstrap-icons/font/bootstrap-icons.css'; // Import the icon font CSS
 import 'bootstrap/dist/css/bootstrap.min.css'
 import BookCard from "./BookCard";
+import DataContextProvider from "../contexts/DataContextProvider";
 function UserProfile(props) {
     const params = new URLSearchParams(window.location.search)
     const page = params.get('user')
     const [curUser, setCurUser] = useState()
     const [favoriteBooks, setFavoriteBooks] = useState()
     const [readBooks, setReadBooks] = useState()
+    const [websiteData, setWebsiteData] = useContext(DataContextProvider)
+
+    let readBooksInstant = null;
+
     useEffect(() => {
         fetchCurrentProfile()
-    }, [])
-
+    }, [websiteData])
+    
     async function fetchCurrentProfile() {
 
         console.log(page)
@@ -58,6 +63,7 @@ function UserProfile(props) {
                         {curUser?.username}
                     </h1>
                     <i class="bi bi-person-square" style={{ fontSize: 300 }}></i>
+
                 </Card>
                 <Card>
                     <Card.Title>Reputation</Card.Title>
