@@ -16,7 +16,7 @@ function AppLayout(props) {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/p201">SplashScreen</Nav.Link>
+                        <Nav.Link as={Link} to="/p201/">SplashScreen</Nav.Link>
                         <Nav.Link as={Link} to="/p201/home">Home</Nav.Link>
                         <Nav.Link as={Link} to="/p201/catalog">Catalog</Nav.Link>
                         <Nav.Link as={Link} to="/p201/bookshelf">Bookshelf</Nav.Link>

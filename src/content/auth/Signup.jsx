@@ -87,7 +87,8 @@ function Signup() {
                 newLanes["isLoggedIn"] = true
                 newLanes["curUser"] = loginUserInput
                 newLanes["reputation"] = doesThisUserExist.reputation
-                newLanes["favorites"] = doesThisUserExist?.favorites 
+                newLanes["favorites"] = doesThisUserExist?.favorites
+                newLanes["readBooks"] = doesThisUserExist?.readBooks
                 return newLanes
             })
             navigate("/p201/home")
@@ -103,6 +104,17 @@ function Signup() {
 
     return <div>
         <Row>
+
+            <Col>
+                <Form>
+                    <h1>Login for some more fun!</h1>
+                    <Form.Label htmlFor="loginUserInput" />
+                    <Form.Control id="loginUserInput" placeholder={"Write your Username Here!"} value={loginUserInput} onChange={(e) => setLoginUserInput(e.target.value)} />
+                    <Form.Label htmlFor="loginPinInput" />
+                    <Form.Control id="loginPinInput" type="password" placeholder={"Login here!"} value={loginPasswordInput} onChange={(e) => setLoginPassWordInput(e.target.value)} />
+                </Form>
+                <Button onClick={handleLoginSubmit}>Login!</Button>
+            </Col>
             <Col>
                 <Form>
                     <h1>Create your account today!</h1>
@@ -112,16 +124,6 @@ function Signup() {
                     <Form.Control id="pinInput" type="password" value={passwordInput} placeholder={"Write your Password Here!"} onChange={(e) => setPasswordInput(e.target.value)} />
                 </Form>
                 <Button onClick={handleSignupSumbit}>Signup!</Button>
-            </Col>
-            <Col>
-                <Form>
-                    <h1>Login for some more fun!</h1>
-                    <Form.Label htmlFor="loginUserInput" />
-                    <Form.Control id="loginUserInput" placeholder={"Write your Username Here!"} value={loginUserInput} onChange={(e) => setLoginUserInput(e.target.value)} />
-                    <Form.Label htmlFor="loginPinInput" />
-                    <Form.Control id="loginPinInput" type="password" placeholder={"Login here!"} value={loginPasswordInput} onChange={(e) => setLoginPassWordInput(e.target.value)} />
-                </Form>
-                <Button onClick={handleLoginSubmit}>password!</Button>
             </Col>
         </Row>
     </div>

@@ -8,6 +8,7 @@ function UserProfile(props) {
     const page = params.get('user')
     const [curUser, setCurUser] = useState()
     const [favoriteBooks, setFavoriteBooks] = useState()
+    const [readBooks, setReadBooks] = useState()
     useEffect(() => {
         fetchCurrentProfile()
     }, [])
@@ -34,10 +35,9 @@ function UserProfile(props) {
             headers: {
                 "X-CS571-ID": CS571.getBadgerId()
             }
-        }).then(res => res.json()).then(res => Object.values(res.results)).then(res => {
-            return res.filter(r => profile?.favorites.includes(r.title))
-        })
-        setFavoriteBooks(apiBooks)
+        }).then(res => res.json()).then(res => Object.values(res.results))
+        setFavoriteBooks(apiBooks.filter(r => profile?.favorites.includes(r.title)))
+        setReadBooks(apiBooks.filter(r=> profile?.readBooks.includes(r.title)))
     }
 
 
@@ -67,6 +67,7 @@ function UserProfile(props) {
                     <Card.Title>
                         Books Read
                     </Card.Title>
+                    <p style={{fontWeight: "bold", fontSize: 25}}>{readBooks?.length}</p>
                 </Card>
             </Row>
         </Col>
@@ -80,6 +81,7 @@ function UserProfile(props) {
                 </Card>
                 <Card>
                     <h2>Books I've read</h2>
+                     {readBooks?.map(r => <BookCard key={crypto.randomUUID()}{...r}></BookCard>)}
                 </Card>
             </Row>
         </Col>

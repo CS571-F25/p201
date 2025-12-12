@@ -63,7 +63,7 @@ function BookProfile(props) {
                 body: JSON.stringify({
                     id: crypto.randomUUID(),
                     reviewedBook: page,
-                    user: "placeholderUsercrypto",
+                    user: websiteData.curUser,
                     title: titleRef.current.value,
                     reputation: 0,
                     rating: userRating,

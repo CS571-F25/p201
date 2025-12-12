@@ -12,6 +12,8 @@ function Logout(){
                 newLanes["isLoggedIn"] = false
                 newLanes["curUser"] = "guest"
                 newLanes["reputation"] = null
+                newLanes["favorites"] = null
+                newLanes["readBooks"] = null
                 return newLanes
             })
         navigate("/p201/home")
