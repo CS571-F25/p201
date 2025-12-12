@@ -8,6 +8,7 @@ function Catalog(props) {
     // add filtering by tag
     // we'll need api, get some project gutenberg books in here
     useEffect(() => {fetchBooks()}, [])
+    
 async function fetchBooks() {
     const apiBooks = await fetch("https://cs571api.cs.wisc.edu/rest/f25/bucket/books", {
         headers: {

@@ -9,6 +9,7 @@ import { Card } from "react-bootstrap"
 import { useContext } from "react"
 
 import CurrentRatingContext from "../contexts/CurrentRatingContext"
+import DataContextProvider from "../contexts/DataContextProvider"
 
 
 function BookProfile(props) {
@@ -20,7 +21,8 @@ function BookProfile(props) {
     const [userRating, setUserRating] = useState(0)
     const [reviews, setReviews] = useState([])
     const [aggregateScore, SetAggregateScore] = useState()
-
+    const [websiteData, setWebsiteData] = useContext(DataContextProvider)
+    
     const titleRef = useRef()
     const contentRef = useRef()
 
@@ -109,8 +111,9 @@ function BookProfile(props) {
                     </Link>
                 </Col>
                 <Col xs={9}>
+                {websiteData.isLoggedIn ? 
                     <Card>
-                        <h2>Write your review here!</h2>
+                        <h1>Write your review here!</h1>
                         <CurrentRatingContext.Provider value={[userRating, setUserRating]}>
                             <StarRating count={5}></StarRating>
                         </CurrentRatingContext.Provider>
@@ -122,7 +125,8 @@ function BookProfile(props) {
                         </Form>
                         <Button onClick={handleReviewSumbit}>Submit</Button>
                     </Card>
-                    {reviews.map(r => <BookReview key={crypto.randomUUID()}{...r}></BookReview>)}
+                     : <h1>Sign-up today to leave your own review!</h1>}
+                    {reviews.length != 0 ? reviews.map(r => <BookReview key={crypto.randomUUID()}{...r}></BookReview>) : <h2>Hm... no reviews here, maybe you could be the first!</h2>}
                 </Col>
             </Row>
             <p>

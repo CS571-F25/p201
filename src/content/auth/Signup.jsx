@@ -86,7 +86,8 @@ function Signup() {
                 const newLanes = { ...websiteData }
                 newLanes["isLoggedIn"] = true
                 newLanes["curUser"] = loginUserInput
-                newLanes["reputation"] = doesThisUserExist.reputation 
+                newLanes["reputation"] = doesThisUserExist.reputation
+                newLanes["favorites"] = doesThisUserExist?.favorites 
                 return newLanes
             })
             navigate("/p201/home")

@@ -1,6 +1,7 @@
 function SplashScreen(){
     return<>
     <h1>Welcome to Crossroads!</h1>
+    <h1>Featured book of the day!</h1>
     <h2>It's a work in progress</h2>
     <h3>We'll have the proper systems up shortly</h3>   
     <p>

@@ -5,6 +5,7 @@ import DataContextProvider from "../contexts/DataContextProvider";
 function AppLayout(props) {
     const [websiteData, setWebsiteData] = useState({
         favorites: [],
+        readBooks: [],
         isLoggedIn: false,
         curUser : "guest",
         reputation : null
@@ -19,7 +20,7 @@ function AppLayout(props) {
                         <Nav.Link as={Link} to="/p201/home">Home</Nav.Link>
                         <Nav.Link as={Link} to="/p201/catalog">Catalog</Nav.Link>
                         <Nav.Link as={Link} to="/p201/bookshelf">Bookshelf</Nav.Link>
-                        <Nav.Link as={Link} to="/p201/userprofile">Profile</Nav.Link>
+                        {websiteData.isLoggedIn ? <Nav.Link as={Link} to={`/p201/userprofile?user=${websiteData.curUser}`}>Profile</Nav.Link> : <></>}
                         {websiteData.isLoggedIn ? <Nav.Link as={Link} to="/p201/logout">Logout</Nav.Link> : <Nav.Link as={Link} to="/p201/signup">Signup & Login</Nav.Link>}
                     </Nav>
                 </Container>
