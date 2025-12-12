@@ -120,10 +120,10 @@ function BookReview(props) {
 
     return <div>
         <Card>
-            <h1>{props.title}</h1>
-            <h2>{`Rating: ${props.rating}`}</h2>
+            <span style={{fontSize: 60, fontWeight: "bold"}}>{props.title}</span>
+            <p style={{fontSize: 40}}>{`Rating: ${props.rating}`}</p>
             <Link to={`/p201/userprofile?user=${props.user}`}>
-            <h4>{`By ${props.user} on ${new Date(props.publishDate).toLocaleString()}`}</h4>
+            <p style={{fontSize: 25}}>{`By ${props.user} on ${new Date(props.publishDate).toLocaleString()}`}</p>
             </Link>
             <p style={{ fontSize: 25 }}>
                 {props.content}
