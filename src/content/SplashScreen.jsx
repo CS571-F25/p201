@@ -29,9 +29,7 @@ async function fetchBooks() {
         <Container className="d-flex align-items-center justify-content-center h-100vh">
             <BookCard {...bookOTD}></BookCard>
         </Container>
-        <p style={{fontSize: 60}}><strong>That's right! It's {`${bookOTD?.title} Winter!`}</strong></p>
-        <h2>It's a work in progress</h2>
-        <h3>We'll have the proper systems up shortly</h3>
+        <p style={{fontSize: 40}}><strong>That's right! It's {`${bookOTD?.title} Winter!`}</strong></p>
     </div>
 }
 
